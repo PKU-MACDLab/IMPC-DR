@@ -8,36 +8,47 @@ import cvxpy           as    cp
 import threading
 
 
-class MyThread(threading.Thread):
+# class MyThread(threading.Thread):
 
-    def __init__(self,func,args):
-        super(MyThread,self).__init__()
-        self.func = func
-        self.args = args
+#     def __init__(self,func,args):
+#         super(MyThread,self).__init__()
+#         self.func = func
+#         self.args = args
 
-    def run(self):
-        self.result = self.func(*self.args)
+#     def run(self):
+#         self.result = self.func(*self.args)
 
-    def get_result(self):
-        try:
-            return self.result  
-        except Exception:
-            return None
+#     def get_result(self):
+#         try:
+#             return self.result  
+#         except Exception:
+#             return None
 
+
+# def run_one_step(agent_list,obstacle_list):
+
+#     pool = []
+#     for i in range(SET.Num):
+#         thread = MyThread(run_one_agent,args=[[agent_list[i],obstacle_list]])
+#         pool.append(thread)
+#         thread.start()
+
+#     agent_list=[]
+#     for thread in pool:
+#         thread.join() 
+#         agent_list.append(thread.get_result())
+    
+#     return agent_list
 
 def run_one_step(agent_list,obstacle_list):
-
-    pool = []
-    for i in range(SET.Num):
-        thread = MyThread(run_one_agent,args=[[agent_list[i],obstacle_list]])
-        pool.append(thread)
-        thread.start()
-
-    agent_list=[]
-    for thread in pool:
-        thread.join() 
-        agent_list.append(thread.get_result())
     
+    items=[]
+    for i in range(SET.Num):
+        items.append( [agent_list[i],obstacle_list] )
+
+    # running it in parallel
+    agent_list=[run_one_agent(items[i]) for i in range(SET.Num)]
+
     return agent_list
 
 

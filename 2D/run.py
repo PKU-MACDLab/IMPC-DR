@@ -63,7 +63,7 @@ def run_one_step(agent_list,obstacle_list):
         items.append( [agent_list[i],obstacle_list] )
 
     # running it in parallel
-    agent_list=[run_one_agent(items[i] for i in range(SET.Num))]
+    agent_list=[run_one_agent(items[i]) for i in range(SET.Num)]
 
     return agent_list
 
