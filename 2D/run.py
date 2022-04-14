@@ -41,17 +41,29 @@ import threading
 #     return agent_list
 
 
+# def run_one_step(agent_list,obstacle_list):
+    
+#     pool = mp.Pool(SET.core_num)
+#     items=[]
+#     for i in range(SET.Num):
+#         items.append( [agent_list[i],obstacle_list] )
+
+#     # running it in parallel
+#     agent_list=pool.map(run_one_agent, items)
+#     pool.close()
+#     pool.join()
+
+#     return agent_list
+
+
 def run_one_step(agent_list,obstacle_list):
     
-    pool = mp.Pool(SET.core_num)
     items=[]
     for i in range(SET.Num):
         items.append( [agent_list[i],obstacle_list] )
 
     # running it in parallel
-    agent_list=pool.map(run_one_agent, items)
-    pool.close()
-    pool.join()
+    agent_list=[run_one_agent(items[i] for i in range(SET.Num))]
 
     return agent_list
 
