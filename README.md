@@ -12,13 +12,15 @@ We have tested our code with:
 in python3
 
 This APP need following dependencies:
-`PyQt5          5.15.1
+```
+PyQt5          5.15.1
 opencv-python  4.1.2.30
 numpy          1.19.2
 mosek          9.4.20
 cvxpy          1.1.6
 scipy          1.5.3
-matplotlib     3.4.3`
+matplotlib     3.4.3
+```
 Beiseds, you need to install libxcb-xinerama0 as follows:
 `sudo apt-get install libxcb-xinerama0`
 
